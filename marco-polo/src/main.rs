@@ -27,7 +27,7 @@ struct Response {
 /// - https://github.com/aws-samples/serverless-rust-demo/
 async fn function_handler(event: LambdaEvent<Request>) -> Result<Response, Error> {
     // Extract some useful info from the request
-    let name = event.payload.name;
+    let name = event.payload.command;
     let logic = match name.as_str() {
         "Marco" => "Polo",
         _ => "Who?",
