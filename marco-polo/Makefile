@@ -14,11 +14,12 @@ lint:
 run:
 	cargo run
 
-release:
+release-arm:
 	cargo lambda build --release --arm64
 
 deploy:
-	cargo lambda deploy
+	cargo lambda deploy \
+	--iam-role arn:aws:iam::427755450963:role/service-role/rust-aws-lambda-role-xgglj8h5
 
 invoke:
 	cargo lambda invoke --remote \

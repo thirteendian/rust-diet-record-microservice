@@ -2,7 +2,7 @@
 name = "marco-polo"
 version = "0.1.0"
 edition = "2021"
-
+authors = ["Yuxuan Yang<yyx980325@hotmail.com>"]
 # Starting in Rust 1.62 you can use `cargo add` to add dependencies 
 # to your project.
 #

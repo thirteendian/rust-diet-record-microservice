@@ -7,7 +7,7 @@ use serde::{Deserialize, Serialize};
 /// The runtime pays no attention to the contents of the request payload.
 #[derive(Deserialize)]
 struct Request {
-    command: String,
+    name: String,
 }
 
 /// This is a made-up example of what a response structure may look like.
@@ -27,16 +27,17 @@ struct Response {
 /// - https://github.com/aws-samples/serverless-rust-demo/
 async fn function_handler(event: LambdaEvent<Request>) -> Result<Response, Error> {
     // Extract some useful info from the request
-    let name = event.payload.command;
-    let logic = match name.as_str() {
-        "Marco" => "Polo",
-        _ => "Who?",
+    let name = event.payload.name;
+    let response = match name.as_str() {
+        "marco" => "polo",
+        "ping" => "pong",
+        _ => "I don't know what you're talking about",
     };
 
     // Prepare the response
     let resp = Response {
         req_id: event.context.request_id,
-        msg: format!("{} says {}", name, logic),
+        msg: format!("{} says {}", name, response),
     };
 
     // Return `Response` (it will be serialized to JSON automatically by the runtime)
