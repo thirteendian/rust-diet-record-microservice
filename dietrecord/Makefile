@@ -11,14 +11,19 @@ format:
 
 lint:
 	cargo clippy --quiet
-
-test:
-	cargo test --quiet
-
 run:
 	cargo run
 
 release:
-	cargo build --release
+	cargo lambda build --release --arm64
 
-all: format lint test run
+deploy:
+	cargo lambda deploy
+
+invoke:
+	cargo lambda invoke --remote \
+		--data-ascii '{"name": "abcbadad"}' \
+		--output-format json \
+		dietrecord
+
+all: format lint run
